@@ -18,11 +18,6 @@ custom_aliases = {
     'd': 'docker-compose exec',
 }
 
-
-def add_alias_if_program_exists(key, name):
-    if which(name) is not None:
-        custom_aliases[key] = name
-
 optional = [
     ['cat', 'bat'],
     ['ls', 'exa'],
@@ -32,6 +27,7 @@ optional = [
 ]
 
 for [key, name] in optional:
-    add_alias_if_program_exists(key, name)
+    if which(name) is not None:
+        custom_aliases[key] = name
 
 aliases.update(custom_aliases)
