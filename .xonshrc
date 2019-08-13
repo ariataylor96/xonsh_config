@@ -4,13 +4,9 @@
 
 import os
 
-xonsh_config_path = '~/.config/xonsh_config'
-env_files = [
-    'environment',
-    'aliases',
-    'prompt',
-]
+xonsh_config_path = os.path.expanduser('~/.config/xonsh_config')
+env_files = sorted([f for f in os.listdir(xonsh_config_path) if f.endswith('.xsh')])
 
 for file_name in env_files:
-    $env_file = os.path.join(xonsh_config_path, file_name + '.py')
+    $env_file = os.path.join(xonsh_config_path, file_name)
     source $env_file
