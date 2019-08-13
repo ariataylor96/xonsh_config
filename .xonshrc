@@ -1,0 +1,16 @@
+# XONSH WIZARD START
+# xontrib load autojump autoxsh avox bashisms base16_shell click_tabcomplete coreutils direnv docker_tabcomplete fzf-widgets jedi prompt_ret_code readable-traceback schedule ssh_agent vox vox_tabcomplete whole_word_jumping
+# XONSH WIZARD END
+
+import os
+
+xonsh_config_path = '~/.config/xonsh_config'
+env_files = [
+    'environment',
+    'aliases',
+    'prompt',
+]
+
+for file_name in env_files:
+    $env_file = os.path.join(xonsh_config_path, file_name + '.py')
+    source $env_file
