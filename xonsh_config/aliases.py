@@ -21,7 +21,7 @@ custom_aliases = {
 optional = [
     ['cat', 'bat'],
     ['ls', 'exa'],
-    ['nim', 'nvim'],
+    ['vim', 'nvim'],
     ['ec', 'emacsclient'],
     ['yaourt', 'yay'],
 ]
