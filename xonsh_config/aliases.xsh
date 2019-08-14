@@ -2,8 +2,8 @@ from shutil import which
 
 
 def push_to_remote():
-    $branch_name = $(git branch | grep '*' | cut -d ' ' -f2).rstrip()
-    git push --set-upstream origin $branch_name
+    branch_name = $(git branch | grep '*' | cut -d ' ' -f2).rstrip()
+    git push --set-upstream origin @(branch_name)
 
 
 custom_aliases = {
