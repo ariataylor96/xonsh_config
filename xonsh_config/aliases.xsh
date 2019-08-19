@@ -16,6 +16,7 @@ custom_aliases = {
     'gpull': 'git pull',
     'gpu': push_to_remote,
     'd': 'docker-compose exec',
+    'fix': 'docker-compose exec frontend yarn fix',
 }
 
 optional = [
