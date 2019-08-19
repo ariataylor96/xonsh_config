@@ -17,6 +17,7 @@ custom_aliases = {
     'gpu': push_to_remote,
     'd': 'docker-compose exec',
     'fix': 'docker-compose exec frontend yarn fix',
+    'install-nocheck': 'yay -S --mflags --nocheck',
 }
 
 optional = [
