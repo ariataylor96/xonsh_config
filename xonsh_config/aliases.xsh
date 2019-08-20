@@ -10,7 +10,7 @@ custom_aliases = {
     'gst': 'git status',
     'gco': 'git checkout',
     'gcam': 'git commit -am',
-    'gf': 'git commit -a --ammend',
+    'gf': 'git commit -a --amend',
     'ga': 'git add',
     'gp': 'git push',
     'gpull': 'git pull',
