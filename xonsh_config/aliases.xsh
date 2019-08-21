@@ -1,4 +1,5 @@
 from shutil import which
+import shlex
 
 
 def push_to_remote():
@@ -17,7 +18,6 @@ custom_aliases = {
     'gpu': push_to_remote,
     'd': 'docker-compose exec',
     'fix': 'docker-compose exec frontend yarn fix',
-    'install-nocheck': 'yay -S --mflags --nocheck',
 }
 
 optional = [
@@ -26,10 +26,11 @@ optional = [
     ['vim', 'nvim'],
     ['ec', 'emacsclient'],
     ['yaourt', 'yay'],
+    ['install-nocheck', 'yay -S --mflags --nocheck'],
 ]
 
 for [key, name] in optional:
-    if which(name) is not None:
+    if which(shlex.split(name)[0]) is not None:
         custom_aliases[key] = name
 
 aliases.update(custom_aliases)
