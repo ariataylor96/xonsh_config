@@ -2,9 +2,13 @@ from shutil import which
 import shlex
 
 
-def push_to_upstream():
+def _gpu():
     branch_name = $(git branch | grep '*' | cut -d ' ' -f2).rstrip()
     git push --set-upstream origin @(branch_name)
+
+
+def _update_mirrors():
+    curl -s "https://www.archlinux.org/mirrorlist/?country=US&protocol=https&use_mirror_status=on" | sed -e 's/^#Server/Server/' -e '/^#/d' | rankmirrors -n 10 - | sudo sponge /etc/pacman.d/mirrorlist
 
 
 custom = {}
@@ -17,7 +21,7 @@ pairs = (
     ('ga', 'git add'),
     ('gp', 'git push'),
     ('gpull', 'git pull'),
-    ('gpu', push_to_upstream),
+    ('gpu', _gpu),
     ('d', 'docker-compose exec'),
     ('fix', 'docker-compose exec frontend yarn fix'),
     ('cat', 'bat'),
@@ -26,6 +30,7 @@ pairs = (
     ('ec', 'emacsclient'),
     ('yaourt', 'yay'),
     ('install-nocheck', 'yay -s --mflags --nocheck'),
+    ('update-mirrors', _update_mirrors),
 )
 
 for [key, name] in pairs:
