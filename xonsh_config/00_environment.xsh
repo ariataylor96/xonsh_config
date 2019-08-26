@@ -1,4 +1,14 @@
-$PATH = $PATH + ['/home/mark/bin', '/home/mark/.local/bin']
+import os
+
+$PATH = $PATH + [
+    os.path.expanduser(p)
+    for p in
+    [
+        '~/bin',
+        '~/.local/bin',
+    ]
+    if os.path.isdir(os.path.expanduser(p))
+]
 $BROWSER = 'firefox'
 $EDITOR = 'emacsclient'
 
