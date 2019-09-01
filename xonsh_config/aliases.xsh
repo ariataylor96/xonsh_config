@@ -41,7 +41,7 @@ pairs = (
     ('vim', 'nvim'),
     ('ec', 'emacsclient'),
     ('yaourt', 'yay'),
-    ('install-nocheck', 'yay -s --mflags --nocheck'),
+    ('install-nocheck', 'yay -S --mflags "--nocheck --skipinteg"'),
     ('update-mirrors', _update_mirrors),
     ('update-plex', _update_plex),
 )
