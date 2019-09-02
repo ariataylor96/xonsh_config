@@ -12,17 +12,6 @@ def _update_mirrors():
     curl -s "https://www.archlinux.org/mirrorlist/?country=US&protocol=https&use_mirror_status=on" | sed -e 's/^#Server/Server/' -e '/^#/d' | rankmirrors -n 10 - | sudo sponge /etc/pacman.d/mirrorlist
 
 
-def _update_plex(args):
-    file_name, ip = args
-    connection_string = f'root@{ip}'
-    base_file_name = os.path.basename(file_name)
-
-    rsync -avz --progress @(file_name) @(connection_string + ':')
-    ssh @(connection_string) dpkg -i @(base_file_name)
-    ssh @(connection_string) rm @(base_file_name)
-    ssh @(connection_string) systemctl restart plexmediaserver
-
-
 custom = {}
 
 pairs = (
@@ -43,10 +32,14 @@ pairs = (
     ('yaourt', 'yay'),
     ('install-nocheck', 'yay -S --mflags "--nocheck --skipinteg"'),
     ('update-mirrors', _update_mirrors),
-    ('update-plex', _update_plex),
 )
 
-for [key, name] in pairs:
+for pair in pairs:
+    key, name = pair
+    if callable(name):
+        name.__xonsh__threadable = False
+        name.__xonsh__capturable = False
+
     if callable(name) or which(shlex.split(name)[0]) is not None:
         custom[key] = name
 
