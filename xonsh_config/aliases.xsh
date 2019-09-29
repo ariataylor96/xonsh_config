@@ -8,12 +8,6 @@ def _gpu():
     git push --set-upstream origin @(branch_name)
 
 
-def _update_mirrors():
-    curl -s "https://www.archlinux.org/mirrorlist/?country=US&protocol=https&use_mirror_status=on" | sed -e 's/^#Server/Server/' -e '/^#/d' | rankmirrors -n 10 - | sudo sponge /etc/pacman.d/mirrorlist
-
-
-custom = {}
-
 pairs = (
     ('gst', 'git status'),
     ('gco', 'git checkout'),
@@ -31,7 +25,9 @@ pairs = (
     ('ec', 'emacsclient'),
     ('yaourt', 'yay'),
     ('install-nocheck', 'yay -S --mflags "--nocheck --skipinteg"'),
-    ('update-mirrors', _update_mirrors),
+    ('rgf', 'rg --fixed-strings'),
+    ('rgi', 'rg -i'),
+    ('rgfi', 'rg --fixed-strings -i'),
 )
 
 for pair in pairs:
@@ -41,6 +37,4 @@ for pair in pairs:
         name.__xonsh__capturable = False
 
     if callable(name) or which(shlex.split(name)[0]) is not None:
-        custom[key] = name
-
-aliases.update(custom)
+        aliases[key] = name
