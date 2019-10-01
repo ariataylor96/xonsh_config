@@ -17,6 +17,7 @@ $EDITOR = 'emacsclient'
 $XONSH_COLOR_STYLE = 'native'
 $COMPLETIONS_CONFIRM = True
 $FOREIGN_ALIASES_SUPPRESS_SKIP_MESSAGE = True
+$PUNCTUAL_PACKAGE_DIR = '~/Projects/dotfiles'
 
 
 def set_color_scheme(name):
