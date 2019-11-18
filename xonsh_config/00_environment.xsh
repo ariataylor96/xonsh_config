@@ -2,15 +2,14 @@ import os
 
 $N_PREFIX = os.path.expanduser('~/n')
 
-$PATH = [
+$PATH = [os.path.join($N_PREFIX, 'bin')] + $PATH + [
     os.path.expanduser(p)
     for p in
     [
         '~/bin',
         '~/.local/bin',
-        '~/n/bin',
     ]
-] + $PATH
+]
 $BROWSER = 'firefox'
 $EDITOR = 'emacsclient'
 
