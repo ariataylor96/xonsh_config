@@ -8,6 +8,7 @@ $PATH = [os.path.join($N_PREFIX, 'bin')] + $PATH + [
     [
         '~/bin',
         '~/.local/bin',
+	'~/.cargo/bin',
     ]
 ]
 $BROWSER = 'firefox'
